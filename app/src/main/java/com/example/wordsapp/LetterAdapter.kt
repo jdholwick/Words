@@ -67,8 +67,8 @@ class LetterAdapter :
         // Listens for a letter to be touched on the screen.
         holder.button.setOnClickListener {
             val context = holder.itemView.context
-            val intent = Intent(context, DetailActivity::class.java)
-            intent.putExtra(DetailActivity.LETTER, holder.button.text.toString())
+            val intent = Intent(context, WordListFragment::class.java)
+            intent.putExtra(WordListFragment.LETTER, holder.button.text.toString())
             context.startActivity(intent)
         }
     }

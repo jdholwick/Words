@@ -87,7 +87,7 @@ class WordAdapter(private val letterId: String, context: Context) :
         holder.button.setOnClickListener {
             // "URI" stands for "Uniform Resource Identifier." All URLs are URIs but
             // not the other way around.
-            val queryUrl: Uri = Uri.parse("${DetailActivity.SEARCH_PREFIX}${item}")
+            val queryUrl: Uri = Uri.parse("${WordListFragment.SEARCH_PREFIX}${item}")
             val intent = Intent(Intent.ACTION_VIEW, queryUrl)
             context.startActivity(intent)
         }
