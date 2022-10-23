@@ -10,6 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wordsapp.databinding.FragmentWordListBinding
 
 class WordListFragment : Fragment() {
+
+    // "lateinit" allows the avoidance of initializing a property when an object is created.
+    private lateinit var letterId: String
+
     companion object {
         val LETTER = "letter"
         val SEARCH_PREFIX = "https://www.google.com/search?q="
@@ -17,6 +21,14 @@ class WordListFragment : Fragment() {
 
     private var _binding: FragmentWordListBinding? = null
     private val binding get() = _binding!!
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        arguments?.let {
+            letterId = it.getString(LETTER).toString()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,10 +42,12 @@ class WordListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = WordAdapter(activity?.intent?.extras?.getString(LETTER).toString(), requireContext())
+        recyclerView.adapter = WordAdapter(letterId, requireContext())
 
         recyclerView.addItemDecoration(
-            DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+            DividerItemDecoration(
+                context, DividerItemDecoration.VERTICAL
+            )
         )
     }
 
